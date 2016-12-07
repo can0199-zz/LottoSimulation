@@ -23,6 +23,7 @@ public class LottoSimulation {
         System.out.println("Die Lotto zahlen sind: ");
         //arrayausgabesuper(zahlen,superzahl);
         beidenebeneinander(zahlen, auswahlplayer, superzahl, playersuperzahl);
+        System.out.println("TestforGitHub");
     }
 
     static void gewinnausschüttung(int[] vergleich, boolean superzahlprüfung) {
