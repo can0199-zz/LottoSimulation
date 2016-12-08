@@ -20,15 +20,31 @@ public class LottoSimulation {
         vergleich = überprüfen(auswahlplayer, zahlen);
         superzahlprüfung = superzahlprüfen(playersuperzahl, superzahl);
         gewinnausschüttung(vergleich, superzahlprüfung);
-        System.out.println("Die Lotto zahlen sind: ");
-        //arrayausgabesuper(zahlen,superzahl);
-        beidenebeneinander(zahlen, auswahlplayer, superzahl, playersuperzahl);
-        System.out.println("TestforGitHub");
+        System.out.println("\nDie Lottozahlen und deine getippten Zahlen werden jetzt neben einander ausgegeben\nlinks sind die Lottozahlen deine sind die rechten Zahlen");
+        beidenebeneinander(zahlen, auswahlplayer, superzahl, playersuperzahl);       
+        System.out.println("\nAuswertung:");
+        if (vergleich[6] != 0) {
+            System.out.println("Deine richtig erratenen Lottozahlen sind: ");
+            for (int i = 0; i < 6; i++) {
+                if (vergleich[i] != -1) {
+                    System.out.println(zahlen[vergleich[i]]);
+                }
+            }
+        }else{
+            System.out.println("Du hast leider keine einzige Lottozahl richtig erraten");
+        }
+        
+        if (superzahlprüfung == true) {
+            System.out.println("die Superzahl hast du richtig erraten: " + superzahl);
+        }else{
+            System.out.println("die Superzahl hast du leider nicht richtig erraten");
+        }
+
     }
 
     static void gewinnausschüttung(int[] vergleich, boolean superzahlprüfung) {
 
-        if (vergleich[6] <= 1) {
+        if (vergleich[6] <= 2) {
             gewinnklassen(0, vergleich, superzahlprüfung);
         } else if (vergleich[6] == 2 & superzahlprüfung == true) {
             gewinnklassen(9, vergleich, superzahlprüfung);
@@ -52,34 +68,41 @@ public class LottoSimulation {
     }
 
     static void gewinnklassen(int klasse, int[] vergleich, boolean superzahl) {
+        System.out.println("\n");
         if (klasse == 9) {
-            System.out.println("Herzlichen Glückwunsch!\nDu hast 2 Zahlen richtig erraten die Superzahl ist auch richtig!");
+            System.out.println("Herzlichen Glückwunsch!\nDu hast 2 Lottoahlen richtig erraten + die Superzahl ist auch richtig!");
         } else if (klasse == 8) {
-            System.out.println("Herzlichen Glückwunsch!\nDu hast 3 Zahlen richtig erraten die Superzahl ist aber leider falsch!");
+            System.out.println("Herzlichen Glückwunsch!\nDu hast 3 Lottozahlen richtig erraten die Superzahl ist aber leider falsch!");
         } else if (klasse == 7) {
-            System.out.println("Herzlichen Glückwunsch!\nDu hast 3 Zahlen richtig erraten die Superzahl ist auch richtig!");
+            System.out.println("Herzlichen Glückwunsch!\nDu hast 3 Lottozahlen  richtig erraten die + Superzahl ist auch richtig!");
         } else if (klasse == 6) {
-            System.out.println("Herzlichen Glückwunsch!\nDu hast 4 Zahlen richtig erraten die Superzahl ist aber leider falsch!");
+            System.out.println("Herzlichen Glückwunsch!\nDu hast 4 Lottozahlen  richtig erraten die Superzahl ist aber leider falsch!");
         } else if (klasse == 5) {
-            System.out.println("Herzlichen Glückwunsch!\nDu hast 4 Zahlen richtig erraten die Superzahl ist auch richtig!");
+            System.out.println("Herzlichen Glückwunsch!\nDu hast 4 Lottozahlen  richtig erraten die + Superzahl ist auch richtig!");
         } else if (klasse == 4) {
-            System.out.println("Herzlichen Glückwunsch!\nDu hast 5 Zahlen richtig erraten die Superzahl ist aber leider falsch!");
+            System.out.println("Herzlichen Glückwunsch!\nDu hast 5 Lottozahlen  richtig erraten die Superzahl ist aber leider falsch!");
         } else if (klasse == 3) {
-            System.out.println("Herzlichen Glückwunsch!\nDu hast 5 Zahlen richtig erraten die Superzahl ist auch richtig!");
+            System.out.println("Herzlichen Glückwunsch!\nDu hast 5 Lottozahlen  richtig erraten die + Superzahl ist auch richtig!");
         } else if (klasse == 2) {
             jackpotbanner();
-            System.out.println("Herzlichen Glückwunsch!\nDu hast 6 Zahlen richtig erraten die Superzahl ist aber leider falsch!");
+            System.out.println("Herzlichen Glückwunsch!\nDu hast 6 Lottozahlen  richtig erraten die Superzahl ist aber leider falsch!");
         } else if (klasse == 1) {
             megajackpotbanner();
-            System.out.println("\nHerzlichen Glückwunsch!\nDu hast alle Zahlen und die Superzahl richtig erraten");
+            System.out.println("\nHerzlichen Glückwunsch!\nDu hast alle Lottozahlen  und die Superzahl richtig erraten");
         } else if (klasse == 0) {
             if (vergleich[6] == 1 & superzahl == false) {
                 System.out.println("\nDu hast: Eine Zahl richtig");
             } else {
                 if (superzahl == true) {
-                    System.out.println("\nDu hast: " + vergleich[6] + " richtige und die Superzahl ist auch richtig");
-                } else {
-                    System.out.println("\nDu hast: " + vergleich[6] + " richtige");
+                    if (vergleich[6] != 0) {
+
+                        System.out.println("\nDu hast: " + vergleich[6] + " richtige und die Superzahl ist auch richtig");
+                    } else {
+                        System.out.println("\nDu hast: " + vergleich[6] + " richtige aber die Superzahl hast du richtig erraten");
+                    }
+                } else {                    
+                    System.out.println("\nDu hast: " + vergleich[6] + " richtige die Superzahl hast du leider nicht erraten");
+                    
                 }
             }
             System.out.println("Du hast leider verloren!");
