@@ -16,28 +16,24 @@ public class LottoSimulation {
         int[] vergleich;
 
         wilkbanner();
-        
+
         //Superzahl kann man sich selber ausssuchen da man ja auch im echten Lotto sich den Scheni aussuchen kann und sozusagen sich somit auch die Superzahl aussucht
         //die Funktion zur eingabe der Tipps wird aufgerufen
         //und die Superzahl wird in playersuperzahl gespeichert
         playersuperzahl = playereingabe(sc, auswahlplayer);
-       
-        
+
         //hier wird das ergebniss von den tipp ohne superzahl ermittelt und in dem Array vergleich gespeichert
         vergleich = ueberpruefen(auswahlplayer, zahlen);
-        
 
         //hier wird die superzahl überprüft und in ner boolean gespeichert
         superzahlpruefung = superzahlpruefen(playersuperzahl, superzahl);
-        
 
         //diese funktion guckt nach ob und wenn was man gewonnen hat
         gewinnausschuettung(vergleich, superzahlpruefung);
-        
 
         //hier wird dann alles ausgeben ob man gewonnen hat, wieviele zahlen richtig waren und wenn welche richtg erraten wurden
         System.out.println("\nDie Lottozahlen und deine getippten Zahlen werden jetzt neben einander ausgegeben\nlinks sind die Lottozahlen deine sind die rechten Zahlen");
-        beidenebeneinander(zahlen, auswahlplayer, superzahl, playersuperzahl);       
+        beidenebeneinander(zahlen, auswahlplayer, superzahl, playersuperzahl);
         System.out.println("\nAuswertung:");
         if (vergleich[6] != 0) {
             System.out.println("Deine richtig erratenen Lottozahlen sind: ");
@@ -46,17 +42,16 @@ public class LottoSimulation {
                     System.out.println(zahlen[vergleich[i]]);
                 }
             }
-        }else{
+        } else {
             System.out.println("Du hast leider keine einzige Lottozahl richtig erraten");
         }
-        
+
         if (superzahlpruefung == true) {
             System.out.println("die Superzahl hast du richtig erraten: " + superzahl);
-        }else{
+        } else {
             System.out.println("die Superzahl hast du leider nicht richtig erraten");
         }
-        
-        
+
         ExitBanner();
 
     }
@@ -88,8 +83,8 @@ public class LottoSimulation {
     }
 
     static void gewinnklassen(int klasse, int[] vergleich, boolean superzahl) {
-       //diese klasse gibt den Spieler dann rückmeldung ob und wieviele Zahlen er richtig erraten hat 
-       //die Funktion baut auf der Funktion "gewinnauschuettung auf"
+        //diese klasse gibt den Spieler dann rückmeldung ob und wieviele Zahlen er richtig erraten hat 
+        //die Funktion baut auf der Funktion "gewinnauschuettung auf"
         System.out.println("\n");
         if (klasse == 9) {
             System.out.println("Herzlichen Glueckwunsch!\nDu hast 2 Lottoahlen richtig erraten + die Superzahl ist auch richtig!");
@@ -114,18 +109,16 @@ public class LottoSimulation {
         } else if (klasse == 0) {
             if (vergleich[6] == 1 & superzahl == false) {
                 System.out.println("\nDu hast: Eine Zahl richtig");
-            } else {
-                if (superzahl == true) {
-                    if (vergleich[6] != 0) {
+            } else if (superzahl == true) {
+                if (vergleich[6] != 0) {
 
-                        System.out.println("\nDu hast: " + vergleich[6] + " richtige und die Superzahl ist auch richtig");
-                    } else {
-                        System.out.println("\nDu hast: " + vergleich[6] + " richtige aber die Superzahl hast du richtig erraten");
-                    }
-                } else {                    
-                    System.out.println("\nDu hast: " + vergleich[6] + " richtige die Superzahl hast du leider nicht erraten");
-                    
+                    System.out.println("\nDu hast: " + vergleich[6] + " richtige und die Superzahl ist auch richtig");
+                } else {
+                    System.out.println("\nDu hast: " + vergleich[6] + " richtige aber die Superzahl hast du richtig erraten");
                 }
+            } else {
+                System.out.println("\nDu hast: " + vergleich[6] + " richtige die Superzahl hast du leider nicht erraten");
+
             }
             System.out.println("Du hast leider verloren!");
             System.out.println("Um mindestens 5€ zu gewinnen musst du 2 richtige und die Superzahl richtig haben");
@@ -133,7 +126,7 @@ public class LottoSimulation {
     }
 
     static int playereingabe(Scanner sc, int[] auswahlplayer) {
-        int superzahl;
+        int superzahl, cache;
         int ii = 0;
         System.out.println("\nBitte wählen Sie 6 Zahlen zwischen 1 und 49 keine duerfen doppelt sein!\n");
         //Hier werden die 6 Zahlen vom Player eingegeben
@@ -161,6 +154,15 @@ public class LottoSimulation {
             } while (auswahlplayer[lottozahlenziehe.indexdoppelt] < 1 | auswahlplayer[lottozahlenziehe.indexdoppelt] > 49);
             ii = 0;
         }
+        cache = auswahlplayer[0];
+        auswahlplayer[0] = auswahlplayer[1];
+        auswahlplayer[1] = cache;
+        cache = auswahlplayer[4];
+        auswahlplayer[4] = auswahlplayer[3];
+        auswahlplayer[3] = cache;
+        cache = auswahlplayer[2];
+        auswahlplayer[2] = auswahlplayer[5];
+        auswahlplayer[5] = cache;
         //superzahl wird eingeben
         System.out.println("\nBitte geben Sie ihre Superzahl ein\nErlaubt sind Zahlen zwischen 0 und 9");
         do {
@@ -176,7 +178,7 @@ public class LottoSimulation {
     }
 
     static void arrayausgabe(int[] array) {
-     //die funktion ist da damit man nicht immer for schleifen erstellen muss um ein array auszugeben 
+        //die funktion ist da damit man nicht immer for schleifen erstellen muss um ein array auszugeben 
         System.out.println("-----------------------------------------------------------------------------------------------");
         for (int i = 0; i < array.length; i++) {
 
@@ -186,7 +188,7 @@ public class LottoSimulation {
     }
 
     static void beidenebeneinander(int[] array, int[] playerarray, int superzahl, int playersuperzahl) {
-       //funktion um die lottozahlen und die player eingabe neben einander darzustellen
+        //funktion um die lottozahlen und die player eingabe neben einander darzustellen
         System.out.println("-----------------------------------------------------------------------------------------------");
 
         for (int i = 0; i < array.length; i++) {
