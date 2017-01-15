@@ -2,9 +2,30 @@ package Lottosimulation;
 
 import java.util.Scanner;
 
-public class LottoSimulation_main_play {
+public class LottoSimulation {
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        auswertung.wilkbanner();
+        System.out.println("Bitte wählen Sie:\n1 Selber spielen\n2 Lottospiel simullieren bis zum Gewinn");
+
+        int auswahl = sc.nextInt();
+        sc.reset();
+        
+        if (auswahl == 1) {
+            int nocheinmal = 0 ;
+            do {
+                play_manually();
+                System.out.println("\n\nWollen Sie noch ein Spiel spielen?\nJa(1) oder Nein(2)");
+                nocheinmal = sc.nextInt();
+            } while (nocheinmal == 1);
+
+        }
+        auswertung.ExitBanner();
+
+    }
+
+    static void play_manually() {
         Scanner sc = new Scanner(System.in);
         lottozahlenziehe lottozahlen = new lottozahlenziehe();
         int superzahl = lottozahlen.ziehesuperzahl();
@@ -14,8 +35,6 @@ public class LottoSimulation_main_play {
         int[] zahlen = lottozahlen.ziehe();
         int[] auswahlplayer = new int[6];
         int[] vergleich;
-
-        auswertung.wilkbanner();
 
         //Superzahl kann man sich selber ausssuchen da man ja auch im echten Lotto sich den Scheni aussuchen kann und sozusagen sich somit auch die Superzahl aussucht
         //die Funktion zur eingabe der Tipps wird aufgerufen
@@ -51,8 +70,6 @@ public class LottoSimulation_main_play {
         } else {
             System.out.println("die Superzahl hast du leider nicht richtig erraten");
         }
-
-        auswertung.ExitBanner();
 
     }
 }

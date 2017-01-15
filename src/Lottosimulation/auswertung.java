@@ -129,7 +129,7 @@ public class auswertung {
             ii++;
         } while (superzahl < 0 | superzahl > 9);
 
-        sc.close();
+        sc.reset();
         return superzahl;
     }
 
