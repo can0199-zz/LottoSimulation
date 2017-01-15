@@ -23,7 +23,7 @@ public class lottozahlenziehe {
             ersetze(indexdoppelt, lottozahlen);
         }
         int cache = 0;
-        //dieser Schritt ist da um die Zuffalszahlen die geordnet waren wieder zu verwirren
+        //dieser Schritt ist da um die Zuffalszahlen die geordnet sid wieder unordentlich zu machen
         cache = lottozahlen[0];
         lottozahlen[0] = lottozahlen[1];
         lottozahlen[1] = cache;
@@ -40,7 +40,7 @@ public class lottozahlenziehe {
         this.superzahl = z.getSuperzahl();
         return superzahl;
     }
-    //diese Funktion überprüft ein Array das übergeben wird ob es gleiche werte hat und liefert ein boolean wert zurück
+    //diese Funktion überprüft ein Array das übergeben wird ob es gleiche Werte hat und liefert ein boolean Wert zurück
     public static boolean pruefe(int[] array) {
         Arrays.sort(array);
         boolean doppelt = false;

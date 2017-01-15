@@ -9,8 +9,7 @@ public class lottozahlerstellen {
     Random rand = new Random();
 
         //eine Zuffalszahl zwischen 1 und 49 wird erstellt und übergeben
-        public int getZahl() {
-                
+        public int getZahl() {        
         return this.zahl = rand.nextInt(49)+1 ;   
     }
          //eine Zuffalszahl zwischen 0 und 9 wird erstellt und übergeben
