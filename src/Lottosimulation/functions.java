@@ -5,13 +5,16 @@
  */
 package Lottosimulation;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Scanner;
 
 /**
  *
  * @author Can
  */
-public class auswertung {
+public class functions {
     static void gewinnausschuettung(int[] vergleich, boolean superzahlpruefung) {
         //in der funktion überprüfen wurde ja ein array erstellt und auf dem 6 platz wurde gespeichert wieviele zahlen richtig erraten wurden
         //hier wird nun die jeweilige gewinnklasse ermittelt und dann die Funktion "gewinnklassen" mit den entsprechenden Parametern aufgerufen
@@ -183,6 +186,27 @@ public class auswertung {
             return true;
         }
         return false;
+    }
+    
+    static void schreibe(String file,String msg) throws Exception {
+        Writer fw = null;
+        try {
+            fw = new FileWriter(file,true);
+            fw.write(msg);
+            fw.append(System.getProperty("line.separator")); // e.g. "\n"
+        } catch (IOException e) {
+            System.err.println("Konnte Datei nicht erstellen");
+        } finally {
+            if (fw != null) {
+                try {
+                    fw.close();
+                    System.out.println("Die Analyse wurde in: " + file + " gespeichert!");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 
     static void wilkbanner() {
