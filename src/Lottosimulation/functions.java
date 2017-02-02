@@ -1,18 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Lottosimulation;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
 import java.util.Scanner;
-import java.util.Vector;
+
 
 /**
  *
@@ -193,75 +182,8 @@ public class functions {
         return false;
     }
 
-//    static void schreibe(String file, String msg) throws Exception {
-//        Writer fw = null;
-//        try {
-//            fw = new FileWriter(file, true);
-//            fw.write(msg);
-//            fw.append(System.getProperty("line.separator")); // e.g. "\n"
-//            fw.flush();
-//        } catch (IOException e) {
-//            System.err.println("Konnte Datei nicht erstellen");
-//        } finally {
-//            if (fw != null) {
-//                try {
-//                    fw.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-
-//    static void schreibeersetze(String file, String msg) throws Exception {
-//        Writer fw = null;
-//        try {
-//            fw = new FileWriter(file);
-//            fw.write(msg);
-//            fw.flush();
-//        } catch (IOException e) {
-//            System.err.println("Konnte Datei nicht erstellen");
-//        } finally {
-//            if (fw != null) {
-//                try {
-//                    fw.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-
-//    static Vector lese(String datName) {
-//        Vector vec = new Vector();
-//
-//        File file = new File(datName);
-//
-//        if (!file.canRead() || !file.isFile()) {
-//            System.exit(0);
-//        }
-//
-//        BufferedReader in = null;
-//        try {
-//            in = new BufferedReader(new FileReader(datName));
-//            String zeile = null;
-//            while ((zeile = in.readLine()) != null) {
-//                vec.add(zeile);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (in != null) {
-//                try {
-//                    in.close();
-//                } catch (IOException e) {
-//                }
-//            }
-//        }
-//        return vec;
-//    }
-    //static int[] prüfe_schreibe(String file, int az, int[] playerzahl) throws Exception {
-    static int[] prüfe( int az, int[] playerzahl,int wievielerichtig){
+    static int[] prüfe(int az, int[] playerzahl, int wievielerichtig) {
+        //hier wird geprüft wieviele Zahlen richtig sind 
         lottozahlenziehe lottozahlen = new lottozahlenziehe();
         int[] vec = new int[az];
         for (int i = 0; i < az; i++) {
@@ -279,47 +201,17 @@ public class functions {
                         }
                     }
                 }
+                //in dieser if abfrage wird festgelegt wieviele zahlen richtig sein müssen!
+                // die variable wievielerichtig ist das enscheidene
                 if (richtige == wievielerichtig) {
                     srichtige = true;
                 }
                 durchgaenge++;
             }
             vec[i] = durchgaenge;
-
-            //String msg = "" + durchgaenge;
-            //schreibe(file, msg);
         }
         return vec;
     }
-
-//    static int start() {
-//        int numberofstarts = -1;
-//        File file = new File("option.inf");
-//
-//        if (!file.canRead() || !file.isFile()) {
-//            System.exit(0);
-//        }
-//
-//        BufferedReader in = null;
-//        try {
-//            in = new BufferedReader(new FileReader("option.inf"));
-//            String zeile = null;
-//            while ((zeile = in.readLine()) != null) {
-//                numberofstarts = Integer.parseInt(zeile);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (in != null) {
-//                try {
-//                    in.close();
-//                    return numberofstarts;
-//                } catch (IOException e) {
-//                }
-//            }
-//        }
-//        return numberofstarts;
-//    }
 
     static void wilkbanner() {
         System.out.println("      __      __.__.__  .__   __                                                               \n"

@@ -8,11 +8,11 @@ import java.util.Vector;
 public class LottoSimulation {
 
     public static void main(String[] args) throws Exception {
-       // int numbofstart = functions.start();
+        // int numbofstart = functions.start();
         String file = "option.inf";
-       // int numb = numbofstart+1;
+        // int numb = numbofstart+1;
         //String msg = Integer.toString(numb);
-       // functions.schreibeersetze(file, msg);
+        // functions.schreibeersetze(file, msg);
         Scanner sc = new Scanner(System.in);
         functions.wilkbanner();
         System.out.println("Bitte wählen Sie:\n1 Selber spielen\n2 Lottospiel simullieren bis zum Gewinn mit statischen Playerzahlen");
@@ -83,35 +83,30 @@ public class LottoSimulation {
     }
 
     static void play_static_player_numbers(Scanner sc) throws Exception {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter df;
-        df = DateTimeFormatter.ISO_LOCAL_DATE;
         int[] playerzahl = new int[6];
-        //int numbofstart = functions.start();
-        //String file = "statplayernr_dynlottonr_" + now.format(df) + "_" + numbofstart + ".txt";
         playerzahl[0] = 15;
         playerzahl[1] = 10;
         playerzahl[2] = 25;
         playerzahl[3] = 27;
         playerzahl[4] = 34;
         playerzahl[5] = 49;
-
+        //hier wird abgefragt wie oft man die richtigen haben will
         System.out.println("Wie oft soll es durchlaufen?");
         int az = sc.nextInt();
+        //hier wird festgelegt wieviele richtig sein sollen 
         System.out.println("Wie viele richtige?");
         int richtige = sc.nextInt();
         System.out.println("das Ergebniss wird analysiert\n");
 
-        //int[] allezahlen = functions.prüfe_schreibe(file, az, playerzahl);
-        int[] allezahlen = functions.prüfe(az, playerzahl,richtige);
+        int[] allezahlen = functions.prüfe(az, playerzahl, richtige);
         sc.close();
-        
-        double durchschnitt=0;
+        //durchschnitt wird errechnet
+        double durchschnitt = 0;
         for (int i = 0; i < allezahlen.length; i++) {
-            durchschnitt = durchschnitt + allezahlen[i];            
+            durchschnitt = durchschnitt + allezahlen[i];
         }
-        durchschnitt = durchschnitt/allezahlen.length;
-        System.out.printf("Der Durchschnitt liegt bei: %.0f\n",durchschnitt);
-      
+        durchschnitt = durchschnitt / allezahlen.length;
+        System.out.printf("Der Durchschnitt liegt bei: %.0f\n", durchschnitt);
+
     }
 }
