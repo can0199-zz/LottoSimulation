@@ -261,7 +261,7 @@ public class functions {
 //        return vec;
 //    }
     //static int[] prüfe_schreibe(String file, int az, int[] playerzahl) throws Exception {
-    static int[] prüfe_schreibe( int az, int[] playerzahl) throws Exception {
+    static int[] prüfe( int az, int[] playerzahl,int wievielerichtig){
         lottozahlenziehe lottozahlen = new lottozahlenziehe();
         int[] vec = new int[az];
         for (int i = 0; i < az; i++) {
@@ -279,7 +279,7 @@ public class functions {
                         }
                     }
                 }
-                if (richtige == 6) {
+                if (richtige == wievielerichtig) {
                     srichtige = true;
                 }
                 durchgaenge++;

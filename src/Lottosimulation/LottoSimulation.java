@@ -98,10 +98,12 @@ public class LottoSimulation {
 
         System.out.println("Wie oft soll es durchlaufen?");
         int az = sc.nextInt();
+        System.out.println("Wie viele richtige?");
+        int richtige = sc.nextInt();
         System.out.println("das Ergebniss wird analysiert\n");
 
         //int[] allezahlen = functions.prüfe_schreibe(file, az, playerzahl);
-        int[] allezahlen = functions.prüfe_schreibe(az, playerzahl);
+        int[] allezahlen = functions.prüfe(az, playerzahl,richtige);
         sc.close();
         
         double durchschnitt=0;
