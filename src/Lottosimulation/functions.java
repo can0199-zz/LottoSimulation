@@ -5,16 +5,21 @@
  */
 package Lottosimulation;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Scanner;
+import java.util.Vector;
 
 /**
  *
  * @author Can
  */
 public class functions {
+
     static void gewinnausschuettung(int[] vergleich, boolean superzahlpruefung) {
         //in der funktion überprüfen wurde ja ein array erstellt und auf dem 6 platz wurde gespeichert wieviele zahlen richtig erraten wurden
         //hier wird nun die jeweilige gewinnklasse ermittelt und dann die Funktion "gewinnklassen" mit den entsprechenden Parametern aufgerufen
@@ -187,27 +192,134 @@ public class functions {
         }
         return false;
     }
-    
-    static void schreibe(String file,String msg) throws Exception {
-        Writer fw = null;
-        try {
-            fw = new FileWriter(file,true);
-            fw.write(msg);
-            fw.append(System.getProperty("line.separator")); // e.g. "\n"
-        } catch (IOException e) {
-            System.err.println("Konnte Datei nicht erstellen");
-        } finally {
-            if (fw != null) {
-                try {
-                    fw.close();
-                    System.out.println("Die Analyse wurde in: " + file + " gespeichert!");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
 
+//    static void schreibe(String file, String msg) throws Exception {
+//        Writer fw = null;
+//        try {
+//            fw = new FileWriter(file, true);
+//            fw.write(msg);
+//            fw.append(System.getProperty("line.separator")); // e.g. "\n"
+//            fw.flush();
+//        } catch (IOException e) {
+//            System.err.println("Konnte Datei nicht erstellen");
+//        } finally {
+//            if (fw != null) {
+//                try {
+//                    fw.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
+
+//    static void schreibeersetze(String file, String msg) throws Exception {
+//        Writer fw = null;
+//        try {
+//            fw = new FileWriter(file);
+//            fw.write(msg);
+//            fw.flush();
+//        } catch (IOException e) {
+//            System.err.println("Konnte Datei nicht erstellen");
+//        } finally {
+//            if (fw != null) {
+//                try {
+//                    fw.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
+
+//    static Vector lese(String datName) {
+//        Vector vec = new Vector();
+//
+//        File file = new File(datName);
+//
+//        if (!file.canRead() || !file.isFile()) {
+//            System.exit(0);
+//        }
+//
+//        BufferedReader in = null;
+//        try {
+//            in = new BufferedReader(new FileReader(datName));
+//            String zeile = null;
+//            while ((zeile = in.readLine()) != null) {
+//                vec.add(zeile);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (in != null) {
+//                try {
+//                    in.close();
+//                } catch (IOException e) {
+//                }
+//            }
+//        }
+//        return vec;
+//    }
+    //static int[] prüfe_schreibe(String file, int az, int[] playerzahl) throws Exception {
+    static int[] prüfe_schreibe( int az, int[] playerzahl) throws Exception {
+        lottozahlenziehe lottozahlen = new lottozahlenziehe();
+        int[] vec = new int[az];
+        for (int i = 0; i < az; i++) {
+            boolean srichtige = false;
+            int durchgaenge = 0;
+            int richtige = 0;
+            while (srichtige == false) {
+                richtige = 0;
+                int[] lotto = lottozahlen.ziehe();
+                for (int c = 0; c < 6; c++) {
+                    for (int j = 0; j < 6; j++) {
+                        if (playerzahl[c] == lotto[j]) {
+                            richtige++;
+                            break;
+                        }
+                    }
+                }
+                if (richtige == 6) {
+                    srichtige = true;
+                }
+                durchgaenge++;
+            }
+            vec[i] = durchgaenge;
+
+            //String msg = "" + durchgaenge;
+            //schreibe(file, msg);
+        }
+        return vec;
     }
+
+//    static int start() {
+//        int numberofstarts = -1;
+//        File file = new File("option.inf");
+//
+//        if (!file.canRead() || !file.isFile()) {
+//            System.exit(0);
+//        }
+//
+//        BufferedReader in = null;
+//        try {
+//            in = new BufferedReader(new FileReader("option.inf"));
+//            String zeile = null;
+//            while ((zeile = in.readLine()) != null) {
+//                numberofstarts = Integer.parseInt(zeile);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (in != null) {
+//                try {
+//                    in.close();
+//                    return numberofstarts;
+//                } catch (IOException e) {
+//                }
+//            }
+//        }
+//        return numberofstarts;
+//    }
 
     static void wilkbanner() {
         System.out.println("      __      __.__.__  .__   __                                                               \n"
